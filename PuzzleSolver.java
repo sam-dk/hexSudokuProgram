@@ -40,25 +40,25 @@ public class PuzzleSolver extends PuzzleChecks
      */
     public boolean solver(char[][] p)
     {
-        int[] testCase = searching(p); //[0] -> row; [1] -> col;
-        if(done(p) == false) //if p contains any '-'
+        int[] testCase = searching(p);
+        if(done(p) == false)
         {
             for(int val = 0; val < values.length; val++)
             {
-                if(promising(values[val], testCase[0], testCase[1], p)) //tests character from values at the spot
+                if(promising(values[val], testCase[0], testCase[1], p))
                 {
-                    p[testCase[0]][testCase[1]] = values[val]; //if character can be placed, places character
-                    if(solver(p)) //recursively checks if solution is viable
+                    p[testCase[0]][testCase[1]] = values[val];
+                    if(solver(p))
                         return true;
                     else
                     {
-                        p[testCase[0]][testCase[1]] = '-'; //if solution not viable, place dash at spot
+                        p[testCase[0]][testCase[1]] = '-';
                     }
                 }
             }
-            return false; //return false to pop recursive stack
+            return false;
         }   
-        return true; //if p is complete, return true
+        return true;
     }        
     
     /**
@@ -92,18 +92,18 @@ public class PuzzleSolver extends PuzzleChecks
         {
             for(int j = 0; j < p[0].length; j++)
             {
-                if(p[i][j] == '-') //searches through p to find a '-'
+                if(p[i][j] == '-')
                 {
                     for(int val = 0; val < values.length; val++)
                     {
-                        if(promising(values[val], i, j, p)) //checks all characters from values that can be put at the spot
+                        if(promising(values[val], i, j, p))
                         {  
-                            temp++; //if a character is viable, increment temp
+                            temp++;
                         }
                     }
-                    if(temp <= lowest) //finds spot with least amount of choices available
+                    if(temp <= lowest)
                     {
-                        lowest = temp; //lowest set to temp. arr[0] -> row; arr[1] -> col;
+                        lowest = temp;
                         arr[0] = i;
                         arr[1] = j;
                     } 
